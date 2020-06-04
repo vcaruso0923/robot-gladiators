@@ -31,30 +31,33 @@ var fight = function(enemyName) {
             console.log ("playerMoney", playerMoney);
             break;
             }
-        }
+        } else if (promptFight === "fight" || promptFight === "FIGHT" || promptFight === "Fight") {
 
-        //Player attacks enemy
-        enemyHealth = enemyHealth - playerAttack;
-        console.log(playerName + " attacked " + enemyName + ". " + enemyName + " now has " + enemyHealth + " health remaining.");
+            //Player attacks enemy
+            enemyHealth = enemyHealth - playerAttack;
+            console.log(playerName + " attacked " + enemyName + ". " + enemyName + " now has " + enemyHealth + " health remaining.");
 
-        // check enemy's health
-        if (enemyHealth <= 0) {
-        window.alert(enemyName + " has died!");
-        break;
-        } else {
-        window.alert(enemyName + " still has " + enemyHealth + " health left.");
-        }
-
-        // Enemy attacks player
-        playerHealth = playerHealth - enemyAttack;
-        console.log(enemyName + " attacked " + playerName + ". " + playerName + " now has " + playerHealth + " health remaining.");
-
-        // check player's health
-        if (playerHealth <= 0) {
-            window.alert(playerName + " has died!");
+            // check enemy's health
+            if (enemyHealth <= 0) {
+            window.alert(enemyName + " has died!");
             break;
+            } else {
+            window.alert(enemyName + " still has " + enemyHealth + " health left.");
+            }
+
+            // Enemy attacks player
+            playerHealth = playerHealth - enemyAttack;
+            console.log(enemyName + " attacked " + playerName + ". " + playerName + " now has " + playerHealth + " health remaining.");
+
+            // check player's health
+            if (playerHealth <= 0) {
+                window.alert(playerName + " has died!");
+                break;
+            } else {
+            window.alert(playerName + " still has " + playerHealth + " health left.");
+            }
         } else {
-        window.alert(playerName + " still has " + playerHealth + " health left.");
+            window.alert("You need to pick a valid option. Try again!");
         }
     
     }
@@ -71,7 +74,7 @@ var startGame = function () {
             enemyHealth = 50;
             fight(pickedEnemyName);
             if (playerHealth > 0 && i < enemyNames.length - 1) {
-                var storeConfirm = window.prompt("The fight is over. Would you like to enter the store before the next round?")
+                var storeConfirm = window.confirm("The fight is over. Would you like to enter the store before the next round?")
                 if (storeConfirm) {
                     shop();
                 }
@@ -101,7 +104,7 @@ var endGame = function () {
 }
 
 var shop = function() {
-    var shopOptionPrompt = window.confirm(
+    var shopOptionPrompt = window.prompt(
         "Would you like to REFILL your health, UPGRADE your attack, or LEAVE the store? Please enter one: 'REFILL', 'UPGRADE', or 'LEAVE' to make a choice."
     );
 
