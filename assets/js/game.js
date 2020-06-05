@@ -78,7 +78,21 @@ var startGame = function () {
 
 var endGame = function () {
     if (playerInfo.health > 0) {
-        window.alert("Great job, you survived the robot onslaught! You know have a score");
+        window.alert("Great job, you survived the robot onslaught! You know have a score of " + playerInfo.health);
+        var highScore = localStorage.getItem("highscore");
+            if (highScore === null) {
+            highScore = 0;
+            }
+            // if player have more money than the high score, player has new high score!
+            if (playerInfo.health > highScore) {
+                localStorage.setItem("highscore", playerInfo.health);
+                localStorage.setItem("name", playerInfo.name);
+
+                alert(playerInfo.name + " now has the high score of " + playerInfo.health + "!");
+            } 
+            else {
+                alert(playerInfo.name + " did not beat the high score of " + highScore + ". Maybe next time!");
+            }
     } else if (playerInfo.health < 0) {
         window.alert("You've lost your robot in battle.");
     };
