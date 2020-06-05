@@ -1,8 +1,3 @@
-// Game States
-// "WIN" - Player robot has defeated all enemy robots
-//    * Fight all enemy robots
-//    * Defeat each enemy robot
-// "LOSE" - Player robot's health is zero or less
 
 
 var fight = function(enemy) {
@@ -13,8 +8,9 @@ var fight = function(enemy) {
 
         //Fight or Skip prompt
         var promptFight = window.prompt("Would you like to FIGHT or SKIP this battle? Enter 'FIGHT' or 'SKIP' to choose.");
+        promptFight = promptFight.toLowerCase();
 
-        if (promptFight === "skip" || promptFight === "SKIP" || promptFight === "Skip") {
+        if (promptFight === "skip") {
             var confirmSkip = window.confirm("Are you sure you'd like to quit?");
     
             if (confirmSkip) {
@@ -23,7 +19,7 @@ var fight = function(enemy) {
             console.log ("playerInfo.money", playerInfo.money);
             break;
             }
-        } else if (promptFight === "fight" || promptFight === "FIGHT" || promptFight === "Fight") {
+        } else if (promptFight === "fight") {
 
             //Player attacks enemy
             var damage = randomNumber(playerInfo.attack - 3, playerInfo.attack);
