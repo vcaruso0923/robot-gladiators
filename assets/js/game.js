@@ -27,14 +27,15 @@ var fight = function(enemyName) {
     
             if (confirmSkip) {
             window.alert(playerName + " has chosen to skip the fight. Goodbye!");
-            playerMoney = playerMoney - 10;
+            playerMoney = Math.max(0, playerMoney - 10);
             console.log ("playerMoney", playerMoney);
             break;
             }
         } else if (promptFight === "fight" || promptFight === "FIGHT" || promptFight === "Fight") {
 
             //Player attacks enemy
-            enemyHealth = enemyHealth - playerAttack;
+            var damage = randomNumber(playerAttack - 3, playerAttack);
+            enemyHealth = Math.max(0, enemyHealth - damage);
             console.log(playerName + " attacked " + enemyName + ". " + enemyName + " now has " + enemyHealth + " health remaining.");
 
             // check enemy's health
@@ -46,7 +47,8 @@ var fight = function(enemyName) {
             }
 
             // Enemy attacks player
-            playerHealth = playerHealth - enemyAttack;
+            var damage = randomNumber(enemyAttack - 3, enemyAttack);
+            playerHealth = Math.max(0, playerHealth - damage);
             console.log(enemyName + " attacked " + playerName + ". " + playerName + " now has " + playerHealth + " health remaining.");
 
             // check player's health
@@ -71,7 +73,7 @@ var startGame = function () {
         if (playerHealth > 0) {
             window.alert("Welcome to Robot Gladiators! Round " + (i + 1));
             var pickedEnemyName = enemyNames[i];
-            enemyHealth = 50;
+            enemyHealth = randomNumber(40, 60);
             fight(pickedEnemyName);
             if (playerHealth > 0 && i < enemyNames.length - 1) {
                 var storeConfirm = window.confirm("The fight is over. Would you like to enter the store before the next round?")
@@ -92,7 +94,7 @@ var endGame = function () {
     if (playerHealth >= 0) {
         window.alert("Great job, you survived the robot onslaught! You know have a score");
     } else {
-        window.alert("You've lost your robot in battle :(.");
+        window.alert("You've lost your robot in battle.");
     };
 
     var playAgainConfirm = window.confirm("Would you like to play again?") 
@@ -146,6 +148,10 @@ var shop = function() {
             break;
     }
 };
+var randomNumber = function(min, max) {
+    var value = Math.floor(Math.random() * (min, max + 1) + min);
+  
+    return value;
+}
 
 startGame();
-
