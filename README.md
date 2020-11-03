@@ -5,3 +5,6 @@ A game through window prompts, alerts, etc. where you are pitted against robots 
 
 ## Link
 https://vcaruso0923.github.io/robot-gladiators/
+
+## Installation
+Clone the repo. Open the index.html in your browser.
